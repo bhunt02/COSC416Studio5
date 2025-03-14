@@ -2260,6 +2260,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
+    - target: {fileID: 5181797941703748720, guid: 70365e4fb3127d44db431487cd761c1c, type: 3}
+      propertyPath: m_Emitting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181797941703748720, guid: 70365e4fb3127d44db431487cd761c1c, type: 3}
+      propertyPath: m_PreviewTimeScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6617673346621519065, guid: 70365e4fb3127d44db431487cd761c1c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

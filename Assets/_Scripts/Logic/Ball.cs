@@ -11,9 +11,29 @@ public class Ball : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     private bool isBallActive;
+    private ParticleSystem hitParticles;
+    private TrailRenderer trailRenderer;
 
+    private void Start()
+    {
+        var particlesChild = transform.Find("HitParticles");
+        if (particlesChild)
+        {
+            hitParticles = particlesChild.GetComponent<ParticleSystem>();
+        }
+        var trail = transform.Find("Trail");
+        if (trail)
+        {
+            trailRenderer = trail.GetComponent<TrailRenderer>();
+        }
+    }
+    
     private void OnCollisionEnter(Collision other)
     {
+        if (hitParticles)
+        {
+            hitParticles.Play();
+        }
         if(other.gameObject.CompareTag("Paddle"))
         {
             Vector3 directionToFire = (transform.position - other.transform.position).normalized;
@@ -27,6 +47,10 @@ public class Ball : MonoBehaviour
 
     public void ResetBall()
     {
+        if (trailRenderer)
+        {
+            trailRenderer.emitting = false;
+        }
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.isKinematic = true;
@@ -40,6 +64,10 @@ public class Ball : MonoBehaviour
     public void FireBall()
     {
         if (isBallActive) return;
+        if (trailRenderer)
+        {
+            trailRenderer.emitting = true;
+        }
         transform.parent = null;
         rb.isKinematic = false;
         rb.AddForce(transform.forward * ballLaunchSpeed, ForceMode.Impulse);
