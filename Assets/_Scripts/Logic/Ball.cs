@@ -12,28 +12,19 @@ public class Ball : MonoBehaviour
 
     private bool isBallActive;
     private ParticleSystem hitParticles;
+    private ParticleSystem bounceParticles;
     private TrailRenderer trailRenderer;
 
     private void Start()
     {
-        var particlesChild = transform.Find("HitParticles");
-        if (particlesChild)
-        {
-            hitParticles = particlesChild.GetComponent<ParticleSystem>();
-        }
-        var trail = transform.Find("Trail");
-        if (trail)
-        {
-            trailRenderer = trail.GetComponent<TrailRenderer>();
-        }
+        bounceParticles = transform.Find("BounceParticles")?.GetComponent<ParticleSystem>();
+        hitParticles = transform.Find("HitParticles")?.GetComponent<ParticleSystem>();
+        trailRenderer = transform.Find("Trail").GetComponent<TrailRenderer>();
     }
     
     private void OnCollisionEnter(Collision other)
     {
-        if (hitParticles)
-        {
-            hitParticles.Play();
-        }
+        bounceParticles.Play();
         if(other.gameObject.CompareTag("Paddle"))
         {
             Vector3 directionToFire = (transform.position - other.transform.position).normalized;
@@ -42,6 +33,10 @@ public class Ball : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             rb.AddForce(directionToFire * returnSpeed, ForceMode.Impulse);
+        } 
+        else if (other.gameObject.GetComponent<Brick>() != null)
+        {
+            hitParticles?.Play();
         }
     }
 

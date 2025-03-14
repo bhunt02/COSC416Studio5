@@ -32,6 +32,11 @@ namespace _Scripts.Utils
             ApplyColor();
         }
 
+        public Color GetColor()
+        {
+            return color;
+        }
+
         private void ApplyColor()
         {
             Mpb.SetColor(ShaderProp, color);

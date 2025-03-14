@@ -498,9 +498,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2564103592795259976, guid: a6b19c919c45ec24c982db98308cb5b7, type: 3}
+      propertyPath: m_Name
+      value: BrickDestroyedEffect
+      objectReference: {fileID: 0}
     - target: {fileID: 5252904249612493878, guid: a6b19c919c45ec24c982db98308cb5b7, type: 3}
       propertyPath: m_Name
       value: Brick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8351346895140075254, guid: a6b19c919c45ec24c982db98308cb5b7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632705342968394352, guid: a6b19c919c45ec24c982db98308cb5b7, type: 3}
+      propertyPath: ShapeModule.arc.value
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2071,6 +2083,14 @@ PrefabInstance:
       propertyPath: ball
       value: 
       objectReference: {fileID: 2054714180}
+    - target: {fileID: 8509313780869582024, guid: 329927099c3f0824b9a9bd04beac8c6d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8509313780869582024, guid: 329927099c3f0824b9a9bd04beac8c6d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8509313780869582024, guid: 329927099c3f0824b9a9bd04beac8c6d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
