@@ -1,19 +1,21 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class GameManager : SingletonMonoBehavior<GameManager>
-{
-    [SerializeField] private int maxLives = 3;
-    [SerializeField] private int currentLives;
+{ 
+    private static int maxLives = 3;
+    private static int currentLives;
+    
     [SerializeField] private Ball ball;
     [SerializeField] private Transform bricksContainer;
-
+    [SerializeField] private LifeCanvasManager lifeCanvasManager;
+    
     private int currentBrickCount;
     private int totalBrickCount;
 
-    private new void Awake()
+    private void Start()
     {
-        base.Awake();
-        Instance.currentLives = maxLives;
+        lifeCanvasManager.PopulateLifeIcons();
     }
     
     private void OnEnable()
@@ -31,6 +33,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void FireBall()
     {
+        if (currentLives <= 0) return;
         ball.FireBall();
     }
 
@@ -46,13 +49,38 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void KillBall()
     {
-        Instance.currentLives--;
+        if (currentLives <= 0) return;
+        
+        currentLives--;
+            
+        StartCoroutine(HandleLivesChanged());
+            
+        ball.ResetBall();
+    }
+
+    private IEnumerator HandleLivesChanged()
+    {
         // update lives on HUD here
+        yield return lifeCanvasManager.UpdateLifeIcons(currentLives);
         // game over UI if maxLives < 0, then exit to main menu after delay
-        if (Instance.currentLives <= 0)
+        if (currentLives <= 0)
         {
             SceneHandler.Instance.LoadGameOverScene();
         }
-        ball.ResetBall();
+    }
+
+    public static void ResetLives()
+    {
+        currentLives = maxLives;
+    }
+
+    public static int GetMaxLives()
+    {
+        return maxLives;
+    }
+
+    public static int GetCurrentLives()
+    {
+        return currentLives;
     }
 }

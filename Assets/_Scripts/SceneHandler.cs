@@ -23,6 +23,7 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
         base.Awake();
         initXPosition = transitionCanvas.transform.localPosition.x;
         SceneManager.LoadScene(menuScene);
+        GameManager.ResetLives();
         SceneManager.sceneLoaded += OnSceneLoad;
     }
 
@@ -36,6 +37,7 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
         if(nextLevelIndex >= levels.Count)
         {
             LoadMenuScene();
+            GameManager.ResetLives();
         }
         else
         {
