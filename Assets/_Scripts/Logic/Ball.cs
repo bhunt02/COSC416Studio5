@@ -6,6 +6,10 @@ public class Ball : MonoBehaviour
     [SerializeField] private float ballLaunchSpeed;
     [SerializeField] private float minBallBounceBackSpeed;
     [SerializeField] private float maxBallBounceBackSpeed;
+    [Header("SFX")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip paddleHitClip;
+    [SerializeField] private AudioClip brickHitClip;
     [Header("References")]
     [SerializeField] private Transform ballAnchor;
     [SerializeField] private Rigidbody rb;
@@ -27,6 +31,8 @@ public class Ball : MonoBehaviour
         bounceParticles.Play();
         if(other.gameObject.CompareTag("Paddle"))
         {
+            // Play paddle hit sound
+            audioSource?.PlayOneShot(paddleHitClip);
             Vector3 directionToFire = (transform.position - other.transform.position).normalized;
             float angleOfContact = Vector3.Angle(transform.forward, directionToFire);
             float returnSpeed = Mathf.Lerp(minBallBounceBackSpeed, maxBallBounceBackSpeed, angleOfContact / 90f);
@@ -36,6 +42,8 @@ public class Ball : MonoBehaviour
         } 
         else if (other.gameObject.GetComponent<Brick>() != null)
         {
+            // Play brick hit sound
+            audioSource?.PlayOneShot(brickHitClip);
             hitParticles?.Play();
         }
     }

@@ -13,6 +13,10 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
     [SerializeField] private Ease animationType;
     [SerializeField] private float animationDuration;
     [SerializeField] private RectTransform transitionCanvas;
+    // New SFX fields for level start
+    [Header("SFX")]
+    [SerializeField] private AudioSource levelAudioSource;
+    [SerializeField] private AudioClip levelStartClip;
 
     private int nextLevelIndex;
     private float initXPosition;
@@ -28,6 +32,11 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
     private void OnSceneLoad(Scene scene, LoadSceneMode _)
     {
         transitionCanvas.DOLocalMoveX(initXPosition, animationDuration).SetEase(animationType);
+        // Play level start sound if the loaded scene is not the menu
+        if(scene.name != menuScene)
+        {
+            levelAudioSource?.PlayOneShot(levelStartClip);
+        }
     }
 
     public void LoadNextScene()
