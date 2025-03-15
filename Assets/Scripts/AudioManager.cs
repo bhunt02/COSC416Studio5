@@ -6,7 +6,33 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
     public Sound[] paddleSFX, brickSFX, levelSFX; 
     public AudioSource paddleSFXsource, brickSFXsource, levelSFXsource;
-    
+    private void Awake(){
+        if(instance == null){
+            instance = this;
+        }else{
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+        foreach(Sound s in paddleSFX){
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+        }
+        foreach(Sound s in brickSFX){
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+        }
+        foreach(Sound s in levelSFX){
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+        }
+    }
 
     public void PlaySFX(string name){
         Sound s = Array.Find(paddleSFX, sound => sound.name == name);
