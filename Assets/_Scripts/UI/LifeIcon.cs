@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,12 +10,10 @@ public class LifeIcon : MonoBehaviour
     private Image _half1;
     private Image _half2;
 
-    private const float Gravity = -9.81f / 10;
-    private const float BreakDuration = 0.5f;
+    private const float Gravity = -9.81f;
+    private const float BreakDuration = 0.25f;
     
-    private float _yVelocity;
     private bool _isBreaking;
-    private float _breakTime;
     
     private void Start()
     {
@@ -50,27 +49,30 @@ public class LifeIcon : MonoBehaviour
         Canvas.ForceUpdateCanvases();
         yield return new WaitForSeconds(0.5f);
 
-        while (_breakTime < BreakDuration)
+        float yVelocity = 0;
+        float breakTime = 0;
+        const float timeDelta = 0.01f;
+        while (breakTime < BreakDuration)
         {
-
-            _breakTime += Time.deltaTime;
-            _yVelocity += Time.deltaTime * Gravity;
-            var xDis = 20 * Time.deltaTime;
-            var zRot = 60 * Time.deltaTime;
-            _half1.transform.localPosition += new Vector3(-xDis, _yVelocity, 0);
+            breakTime += timeDelta;
+            yVelocity += timeDelta * Gravity;
+            var xDis = 30 * timeDelta;
+            var zRot = 90 * timeDelta;
+            _half1.transform.localPosition += new Vector3(-xDis, yVelocity, 0);
             _half1.transform.rotation = Quaternion.Euler(0, 0, _half1.transform.localEulerAngles.z + zRot);
-            _half2.transform.localPosition += new Vector3(xDis, _yVelocity, 0);
+            _half2.transform.localPosition += new Vector3(xDis, yVelocity, 0);
             _half2.transform.rotation = Quaternion.Euler(0, 0, _half2.transform.localEulerAngles.z - zRot);
 
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(timeDelta);
         }
         
         var rect1 = _half1.GetComponent<RectTransform>();
         var rect2 = _half2.GetComponent<RectTransform>();
+        var ratio = Mathf.Round(rect1.rect.width / 40);
         while (rect1.rect.width > 0)
         {
-            rect1.sizeDelta = new Vector2(rect1.rect.width-1, rect1.rect.height-1);    
-            rect2.sizeDelta = new Vector2(rect1.rect.width-1, rect1.rect.height-1);  
+            rect1.sizeDelta = new Vector2(rect1.rect.width-ratio, rect1.rect.height-ratio);    
+            rect2.sizeDelta = new Vector2(rect1.rect.width-ratio, rect1.rect.height-ratio);  
             yield return new WaitForEndOfFrame();
         }
         
