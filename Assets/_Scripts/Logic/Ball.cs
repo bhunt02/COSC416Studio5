@@ -11,9 +11,20 @@ public class Ball : MonoBehaviour
     [SerializeField] private Rigidbody rb;
 
     private bool isBallActive;
+    private ParticleSystem hitParticles;
+    private ParticleSystem bounceParticles;
+    private TrailRenderer trailRenderer;
 
+    private void Start()
+    {
+        bounceParticles = transform.Find("BounceParticles")?.GetComponent<ParticleSystem>();
+        hitParticles = transform.Find("HitParticles")?.GetComponent<ParticleSystem>();
+        trailRenderer = transform.Find("Trail").GetComponent<TrailRenderer>();
+    }
+    
     private void OnCollisionEnter(Collision other)
     {
+        bounceParticles.Play();
         if(other.gameObject.CompareTag("Paddle"))
         {
             Vector3 directionToFire = (transform.position - other.transform.position).normalized;
@@ -22,11 +33,19 @@ public class Ball : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
             rb.AddForce(directionToFire * returnSpeed, ForceMode.Impulse);
+        } 
+        else if (other.gameObject.GetComponent<Brick>() != null)
+        {
+            hitParticles?.Play();
         }
     }
 
     public void ResetBall()
     {
+        if (trailRenderer)
+        {
+            trailRenderer.emitting = false;
+        }
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.isKinematic = true;
@@ -40,6 +59,10 @@ public class Ball : MonoBehaviour
     public void FireBall()
     {
         if (isBallActive) return;
+        if (trailRenderer)
+        {
+            trailRenderer.emitting = true;
+        }
         transform.parent = null;
         rb.isKinematic = false;
         rb.AddForce(transform.forward * ballLaunchSpeed, ForceMode.Impulse);
