@@ -32,10 +32,10 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
     private void OnSceneLoad(Scene scene, LoadSceneMode _)
     {
         transitionCanvas.DOLocalMoveX(initXPosition, animationDuration).SetEase(animationType);
-        // Play level start sound if the loaded scene is not the menu
+        // Play level-up sound via AudioManager for non-menu scenes
         if(scene.name != menuScene)
         {
-            levelAudioSource?.PlayOneShot(levelStartClip);
+            AudioManager.Instance.PlaySFX(levelStartClip.name);
         }
     }
 
