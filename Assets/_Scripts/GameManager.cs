@@ -3,12 +3,19 @@
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
     [SerializeField] private int maxLives = 3;
+    [SerializeField] private int currentLives;
     [SerializeField] private Ball ball;
     [SerializeField] private Transform bricksContainer;
 
     private int currentBrickCount;
     private int totalBrickCount;
 
+    private new void Awake()
+    {
+        base.Awake();
+        Instance.currentLives = maxLives;
+    }
+    
     private void OnEnable()
     {
         InputHandler.Instance.OnFire.AddListener(FireBall);
@@ -39,9 +46,13 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void KillBall()
     {
-        maxLives--;
+        Instance.currentLives--;
         // update lives on HUD here
         // game over UI if maxLives < 0, then exit to main menu after delay
+        if (Instance.currentLives <= 0)
+        {
+            SceneHandler.Instance.LoadGameOverScene();
+        }
         ball.ResetBall();
     }
 }
