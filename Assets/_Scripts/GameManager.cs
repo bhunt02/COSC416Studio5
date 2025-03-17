@@ -1,16 +1,26 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class GameManager : SingletonMonoBehavior<GameManager>
-{
-    [SerializeField] private int maxLives = 3;
+{ 
+    private static int maxLives = 3;
+    private static int currentLives;
+    public static int score;
+    
     [SerializeField] private Ball ball;
     [SerializeField] private Transform bricksContainer;
+    [SerializeField] private LifeCanvasManager lifeCanvasManager;
     [SerializeField] private ScoreCounter scoreCounter;
-
+    
     private int currentBrickCount;
     private int totalBrickCount;
-    public int score;
 
+    private void Start()
+    {
+        lifeCanvasManager.PopulateLifeIcons();
+        scoreCounter.UpdateScore(score);
+    }
+    
     private void OnEnable()
     {
         InputHandler.Instance.OnFire.AddListener(FireBall);
@@ -26,6 +36,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void FireBall()
     {
+        if (currentLives <= 0) return;
         ball.FireBall();
     }
 
@@ -42,15 +53,49 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void KillBall()
     {
-        maxLives--;
-        // update lives on HUD here
-        // game over UI if maxLives < 0, then exit to main menu after delay
+        if (currentLives <= 0) return;
+        
+        currentLives--;
+            
+        StartCoroutine(HandleLivesChanged());
+            
         ball.ResetBall();
     }
 
-    public void IncreaseScore()
+    private IEnumerator HandleLivesChanged()
+    {
+        // update lives on HUD here
+        yield return lifeCanvasManager.UpdateLifeIcons(currentLives);
+        // game over UI if maxLives < 0, then exit to main menu after delay
+        if (currentLives <= 0)
+        {
+            SceneHandler.Instance.LoadGameOverScene();
+        }
+    }
+
+    public static void ResetLives()
+    {
+        currentLives = maxLives;
+    }
+
+    public static int GetMaxLives()
+    {
+        return maxLives;
+    }
+
+    public static int GetCurrentLives()
+    {
+        return currentLives;
+    }
+    
+    private void IncreaseScore()
     {
         score++;
         scoreCounter.UpdateScore(score);
+    }
+    
+    public static void ResetScore()
+    {
+        score = 0;
     }
 }
