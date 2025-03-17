@@ -5,6 +5,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 { 
     private static int maxLives = 3;
     private static int currentLives;
+    public static int score;
     
     [SerializeField] private Ball ball;
     [SerializeField] private Transform bricksContainer;
@@ -13,11 +14,11 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     
     private int currentBrickCount;
     private int totalBrickCount;
-    public int score;
 
     private void Start()
     {
         lifeCanvasManager.PopulateLifeIcons();
+        scoreCounter.UpdateScore(score);
     }
     
     private void OnEnable()
@@ -87,9 +88,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         return currentLives;
     }
     
-    public void IncreaseScore()
+    private void IncreaseScore()
     {
         score++;
         scoreCounter.UpdateScore(score);
+    }
+    
+    public static void ResetScore()
+    {
+        score = 0;
     }
 }

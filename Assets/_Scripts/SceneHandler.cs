@@ -38,6 +38,7 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
         {
             LoadMenuScene();
             GameManager.ResetLives();
+            GameManager.ResetScore();
         }
         else
         {
