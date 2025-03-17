@@ -2869,6 +2869,18 @@ PrefabInstance:
       propertyPath: ballAnchor
       value: 
       objectReference: {fileID: 1882589128}
+    - target: {fileID: 6846597512200348566, guid: 70365e4fb3127d44db431487cd761c1c, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6846597512200348566, guid: 70365e4fb3127d44db431487cd761c1c, type: 3}
+      propertyPath: brickHitClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 24a407981f7fc4a9795f8739d4ef4f71, type: 3}
+    - target: {fileID: 6846597512200348566, guid: 70365e4fb3127d44db431487cd761c1c, type: 3}
+      propertyPath: paddleHitClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 227acdf53153b4434af98c912b445d3f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
