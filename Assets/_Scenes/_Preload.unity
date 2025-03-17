@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 681802681}
   - component: {fileID: 681802680}
   - component: {fileID: 681802679}
+  - component: {fileID: 681802685}
   m_Layer: 5
   m_Name: SceneHandlerCanvas
   m_TagString: Untagged
@@ -172,6 +173,7 @@ MonoBehaviour:
   animationType: 19
   animationDuration: 1
   transitionCanvas: {fileID: 1003730455}
+  levelStartClip: {fileID: 8300000, guid: d7a4831e53b5f408fa2bb2047b35dc7b, type: 3}
 --- !u!114 &681802681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +257,35 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &681802685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681802678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9bf24a168cca4dfe8fb3f7bfbdd1a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SFXsounds:
+  - name: ball-paddle
+    clip: {fileID: 8300000, guid: 227acdf53153b4434af98c912b445d3f, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: brick-ball
+    clip: {fileID: 8300000, guid: 24a407981f7fc4a9795f8739d4ef4f71, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: level-up
+    clip: {fileID: 8300000, guid: d7a4831e53b5f408fa2bb2047b35dc7b, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  mixerGroup: {fileID: 24300002, guid: 353e222078d764568be79888a4325e8c, type: 2}
 --- !u!1 &1003730454
 GameObject:
   m_ObjectHideFlags: 0

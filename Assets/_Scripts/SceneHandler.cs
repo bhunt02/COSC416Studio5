@@ -67,7 +67,7 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
 
     private IEnumerator LoadSceneAfterTransition(string scene)
     {
-        if (!scene.Equals(menuScene) && !scene.Equals("_Preload"))
+        if (!scene.Equals(menuScene) && !scene.Equals("_Preload") && !scene.Equals("GameOver"))
         {
             AudioManager.Instance.PlaySFX(levelStartClip.name);
         }
