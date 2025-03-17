@@ -1830,10 +1830,10 @@ AudioSource:
   m_GameObject: {fileID: 1458088771}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 353e222078d764568be79888a4325e8c, type: 2}
   m_audioClip: {fileID: 8300000, guid: d7a4831e53b5f408fa2bb2047b35dc7b, type: 3}
   m_Resource: {fileID: 8300000, guid: d7a4831e53b5f408fa2bb2047b35dc7b, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1927,7 +1927,7 @@ AudioSource:
   m_GameObject: {fileID: 1458088771}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 353e222078d764568be79888a4325e8c, type: 2}
   m_audioClip: {fileID: 8300000, guid: 24a407981f7fc4a9795f8739d4ef4f71, type: 3}
   m_Resource: {fileID: 8300000, guid: 24a407981f7fc4a9795f8739d4ef4f71, type: 3}
   m_PlayOnAwake: 0
@@ -2024,7 +2024,7 @@ AudioSource:
   m_GameObject: {fileID: 1458088771}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 353e222078d764568be79888a4325e8c, type: 2}
   m_audioClip: {fileID: 8300000, guid: 227acdf53153b4434af98c912b445d3f, type: 3}
   m_Resource: {fileID: 8300000, guid: 227acdf53153b4434af98c912b445d3f, type: 3}
   m_PlayOnAwake: 0
@@ -2279,7 +2279,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1704158126}
   - component: {fileID: 1704158125}
-  - component: {fileID: 1704158127}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -2303,19 +2302,19 @@ MonoBehaviour:
   - name: level-up
     clip: {fileID: 8300000, guid: d7a4831e53b5f408fa2bb2047b35dc7b, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
     source: {fileID: 0}
   - name: ball-paddle
     clip: {fileID: 8300000, guid: 227acdf53153b4434af98c912b445d3f, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
     source: {fileID: 0}
   - name: brick-ball
     clip: {fileID: 8300000, guid: 24a407981f7fc4a9795f8739d4ef4f71, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
     source: {fileID: 0}
-  SFXsource: {fileID: 1458088773}
+  mixerGroup: {fileID: 24300002, guid: 353e222078d764568be79888a4325e8c, type: 2}
 --- !u!4 &1704158126
 Transform:
   m_ObjectHideFlags: 0
@@ -2332,14 +2331,6 @@ Transform:
   - {fileID: 1458088772}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1704158127
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704158124}
-  m_Enabled: 1
 --- !u!1 &1713306683
 GameObject:
   m_ObjectHideFlags: 0
@@ -2777,6 +2768,7 @@ SceneRoots:
   - {fileID: 196396963}
   - {fileID: 1024363857}
   - {fileID: 1147801380}
+  - {fileID: 1704158126}
   - {fileID: 851636186}
   - {fileID: 1170594424}
   - {fileID: 1684723687}
@@ -2784,4 +2776,3 @@ SceneRoots:
   - {fileID: 2054714179}
   - {fileID: 1783415364}
   - {fileID: 1311635199}
-  - {fileID: 1704158126}
