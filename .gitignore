@@ -77,4 +77,8 @@ crashlytics-build.properties
 # IDE-Specific
 .idea/
 
-.vscode
+
+.qodo
+
+.vscode/
+
