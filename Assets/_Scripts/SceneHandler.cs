@@ -9,6 +9,7 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
     [Header("Scene Data")]
     [SerializeField] private List<string> levels;
     [SerializeField] private string menuScene;
+    [SerializeField] private string gameOverScene;
     [Header("Transition Animation Data")]
     [SerializeField] private Ease animationType;
     [SerializeField] private float animationDuration;
@@ -26,6 +27,7 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
         base.Awake();
         initXPosition = transitionCanvas.transform.localPosition.x;
         SceneManager.LoadScene(menuScene);
+        GameManager.ResetLives();
         SceneManager.sceneLoaded += OnSceneLoad;
     }
 
@@ -44,6 +46,8 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
         if(nextLevelIndex >= levels.Count)
         {
             LoadMenuScene();
+            GameManager.ResetLives();
+            GameManager.ResetScore();
         }
         else
         {
@@ -53,6 +57,13 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
         }
     }
 
+    public void LoadGameOverScene()
+    {
+        transitionCanvas.DOLocalMoveX(initXPosition + transitionCanvas.rect.width, animationDuration).SetEase(animationType);
+        StartCoroutine(LoadSceneAfterTransition(gameOverScene));
+        nextLevelIndex = levels.Count;
+    }
+    
     public void LoadMenuScene()
     {
         transitionCanvas.DOLocalMoveX(initXPosition + transitionCanvas.rect.width, animationDuration).SetEase(animationType);
