@@ -168,6 +168,7 @@ MonoBehaviour:
   - Level 1
   - Level 2
   menuScene: MainMenu
+  gameOverScene: GameOver
   animationType: 19
   animationDuration: 1
   transitionCanvas: {fileID: 1003730455}
