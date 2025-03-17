@@ -49,12 +49,7 @@ public class AudioManager : MonoBehaviour
         {
             Debug.Log($"Playing sound: {name}");
             s.source.Play();
-            Debug.Log($"Sound object: {s.name}");
-            Debug.Log($"AudioSource GameObject: {s.source.gameObject.name}");
-            Debug.Log($"AudioSource Clip: {(s.source.clip != null ? s.source.clip.name : "None")}");
-            Debug.Log($"AudioSource Volume: {s.source.volume}");
-            Debug.Log($"AudioSource Pitch: {s.source.pitch}");
-            Debug.Log($"AudioSource isPlaying? {s.source.isPlaying}");
+            
 
             return;
         }
