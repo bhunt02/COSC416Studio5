@@ -173,7 +173,6 @@ GameObject:
   - component: {fileID: 3569209217565899578}
   - component: {fileID: 8099638828735425041}
   - component: {fileID: 3008517946188939336}
-  - component: {fileID: 1676556172159635183}
   m_Layer: 5
   m_Name: LivesCanvas
   m_TagString: Untagged
@@ -277,18 +276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3008517946188939336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9188643375587446398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f20474d9eeb398043a7f254be9cccdc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1676556172159635183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -2,6 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+.vscode
 .utmp/
 /[Ll]ibrary/
 /[Tt]emp/
@@ -76,4 +77,8 @@ crashlytics-build.properties
 # IDE-Specific
 .idea/
 
-.vscode
+
+.qodo
+
+.vscode/
+

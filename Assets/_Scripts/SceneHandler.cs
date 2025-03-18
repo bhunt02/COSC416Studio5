@@ -14,6 +14,8 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
     [SerializeField] private Ease animationType;
     [SerializeField] private float animationDuration;
     [SerializeField] private RectTransform transitionCanvas;
+    [Header("SFX")]
+    [SerializeField] private AudioClip levelStartClip;
 
     private int nextLevelIndex;
     private float initXPosition;
@@ -30,11 +32,12 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
     private void OnSceneLoad(Scene scene, LoadSceneMode _)
     {
         transitionCanvas.DOLocalMoveX(initXPosition, animationDuration).SetEase(animationType);
+
     }
 
     public void LoadNextScene()
     {
-        if(nextLevelIndex >= levels.Count)
+        if (nextLevelIndex >= levels.Count)
         {
             LoadMenuScene();
             GameManager.ResetLives();
@@ -64,6 +67,10 @@ public class SceneHandler : SingletonMonoBehavior<SceneHandler>
 
     private IEnumerator LoadSceneAfterTransition(string scene)
     {
+        if (!scene.Equals(menuScene) && !scene.Equals("_Preload") && !scene.Equals("GameOver"))
+        {
+            AudioManager.Instance.PlaySFX(levelStartClip.name);
+        }
         yield return new WaitForSeconds(animationDuration);
         SceneManager.LoadScene(scene);
     }

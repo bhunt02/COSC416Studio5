@@ -14,3 +14,8 @@
 - Game-Over screen
 - Camera shake upon hitting brick with ball
 - Basic audio sound effects (paddle hit ball, ball hit brick, level start)
+
+## Sources for Audios
+1. ball-paddle.mp3 [https://www.youtube.com/watch?v=V9WNLIuSVWU]
+2. brick-ball.mp3 [https://www.youtube.com/shorts/oJDfy4Ea-Os]
+3. level-up.mp3 [https://www.youtube.com/watch?v=s7weNtlneJM]

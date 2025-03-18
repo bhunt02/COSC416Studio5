@@ -9,6 +9,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     
     [SerializeField] private Ball ball;
     [SerializeField] private Transform bricksContainer;
+    [SerializeField] private float shakeDuration;
+    [SerializeField] private float shakeStrength;
+
     [SerializeField] private LifeCanvasManager lifeCanvasManager;
     [SerializeField] private ScoreCounter scoreCounter;
     
@@ -44,7 +47,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         // fire audio here
         // implement particle effect here
-        // add camera shake here
+        CameraShake.Shake(shakeDuration, shakeStrength);
         currentBrickCount--;
         IncreaseScore();
         Debug.Log($"Destroyed Brick at {position}, {currentBrickCount}/{totalBrickCount} remaining");
